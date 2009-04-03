@@ -21,3 +21,24 @@ What API should authentication be done through?  The most common options are:
 There are several other more obscure methods used which are documented in the config.h file.
 
 In most cases the method that you want if you just want to authenticate from the system password file is SHADOW_SUN or SHADOW_BSD depending on your Unix version.  PAM is slower and more complex to set up, but allows greater flexibility in configuration and allows you to authenticate from other sources.
+
+===1.2. Set Failure Logging ===
+
+A failure log keeps a count of how many bad logins have been attempted for each user,
+and disables logins to any account where some limit is exceeded.  This is useful to
+prevent people from trying to guessing passwords by trying every word in the dictionary, but it can be a problem because it means anyone can disable any user account just by trying some bad passwords on it.
+
+A few Unix systems, like OpenBSD, have failure logs for normal logins to the system, and pwauth can be configured to tie into them.  But it is also possible to set up pwauth to use it's own failure log even on systems that don't have one for normal logins.
+
+If you choose to use this, it would probably be good to have your CGI's run the "checkfaillog" program after successful logins to report the count of bad logins and to reset the count to zero.
+
+I think most installations don't use this and it should not be enabled with PAM, which performs this function at a lower level.
+
+
+===1.3. Set Lastlog Logging ===
+
+Nearly all Unix systems maintain a lastlog file that keeps record of the last time that each user logged into the system.  It is possible to have pwauth update this when successful authentications occur.  This can be important on systems where you expire unused accounts and some users may only log in via the web.
+
+This should not be enabled with PAM, where this is done at a lower level.
+
+= THIS PAGE IS INCOMPLETE =
