@@ -1,0 +1,23 @@
+#summary Main Installation Instructions
+
+= Installation Instructions =
+
+==1. Edit the config.h file==
+
+All configuration of pwauth is done via the config.h file.  You should set or check the following variables:
+
+===1.1. Set Authentication Method ===
+
+What API should authentication be done through?  The most common options are:
+
+ * SHADOW_SUN:  This is the shadow password system in Solaris, Linux and IRIX 5.3 systems.  It uses getspnam() to fetch passwords and crypt() to encrypt them.
+
+ * SHADOW_BSD: This is the shadow password system in BSDI, NetBSD, OpenBSD, and FreeBSD.  This uses getpwnam() to fetch passwords and crypt() to encrypt them.  This would only work with OS X if the accounts being authenticated are configured with legacy crypt style passwords.  In general, the PAM option is more likely to be usable in OS X.
+
+ * PAM: Talk to the authentication system through PAM - the plug-in authentication module interface.  This exists on Linux, Solaris 7, FreeBSD, and OS X.  You'll need to create /etc/pam.d/pwauth or edit /etc/pam.config to include entries for pwauth.  If you are using PAM to authenticate out of something you don't need to be root to access, then you might use instead Ingo Lutkebohle's mod_auth_pam.c module.  If you are using Solaris, you may need to use PAM_SOLARIS or PAM_SOLARIS_26 instead to work around various bugs.
+
+ * LOGIN_CONF_OPENBSD:  Many BSD derived systems use a login.conf file to configure authentication instead of (or in addition to) PAM.  We currently support authentication through this mechanism only for OpenBSD.  Of course, if you login.conf configuration is standard, you can just use SHADOW_BSD, but if you want pwauth to respect settings in login.conf this option can be used instead.  The API used here, is however, pretty much unique to OpenBSD and will not work on NetBSD or FreeBSD.
+
+There are several other more obscure methods used which are documented in the config.h file.
+
+In most cases the method that you want if you just want to authenticate from the system password file is SHADOW_SUN or SHADOW_BSD depending on your Unix version.  PAM is slower and more complex to set up, but allows greater flexibility in configuration and allows you to authenticate from other sources.
