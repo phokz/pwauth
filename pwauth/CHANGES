@@ -1,0 +1,76 @@
+Pwauth Change Log
+=================
+
+VERSION 2.3.8 -
+  - Undefining SERVER_UIDS now disables the runtime uid check.  Documentation
+    added to suggest using this, together with group execution permissions on
+    the binary, to create a group for users who can run pwauth.  Thanks to
+    Adi Kriegisch <adi@kriegisch.at> for suggesting this.
+  - Return a distinct status code if authentication fails because we are not
+    running as root.  This is currently only done for SHADOW_SUN, SHADOW_BSD,
+    SHADOW_AIX, and SHADOW_MDW.  It's just to help confused installers
+    figure out why things aren't working.
+  - Warn installers that they may need to install PAM development packages.
+
+VERSION 2.3.7 - Jan 9, 2009
+  - DOCUMENTATION FIX ONLY
+  - Corrected erroneous AuthBasicProvider command in INSTALL file.
+
+VERSION 2.3.6 - May 19, 2008
+  - Add PAM_OS_X option.
+  - Clarified comments in config.h.
+  - Replace wildly obsolete inclusion of strings.h with inclusion of string.h
+
+VERSION 2.3.5 - Dec 17, 2007
+  - Fixed return codes from AIX and HPUX versions (thanks to Paul Marvin for
+    finding this bug).
+
+VERSION 2.3.4 - Nov 11, 2007
+  - Fixed PAM_SOLARIS define.
+
+VERSION 2.3.3 - Sep 1, 2007
+  - Don't allow logins during inactive period after password expiration.
+
+VERSION 2.3.2 - Feb 19, 2006
+  - Update documentation to discuss usage with mod_authnz_external.
+  - Update documentation to discuss use of mod_authz_unixgroup instead of the
+    unixgroup script.
+  - Drop "development release" notation.
+
+VERSION 2.3.1 - Jan 10, 2005
+  - Fix the checks for expired passwords and expired accounts for
+    LOGIN_CONF_OPENBSD configurations.
+  - Fix the handling of the pam_message argument to the conversation function
+    for Solaris.  The old handling was right for Linux PAM and OpenPAM, but
+    not for Solaris.  However, the bug occurs only when the PAM modules passes
+    more than one prompt to the conversation function, which should probably
+    never happen.
+
+VERSION 2.3.0 - Sep 28, 2004
+  - Status code values returned by pwauth have changed.  0 is still success,
+    of course, but there is a much wider range of non-zero error codes returned
+    to indicate different causes of login failure.
+  - Pwauth now checks for /etc/nologin file by default.  Undefine
+    NOLOGIN_FILE in config.h if you don't want this behavior.
+  - Pwauth now checks if an account is expired and refuses logins if it is.
+    Undefine CHECK_LOGIN_EXPIRATION in config.h if you don't want this
+    behavior.
+  - Pwauth now checks if an account's password has expired and refuses logins
+    if it is and if logins are supposed to be disabled when the password has
+    expired.  Undefine CHECK_PASSWORD_EXPIRATION if you don't want this
+    behavior.
+  - Added support for authenticating through login.conf interface on OpenBSD.
+    Support for login.conf systems on other versions of Unix is not yet here.
+  - Added support for OpenBSD failure logs.
+  - Source code split into multiple files.
+  - Added 'checkfaillog' program which CGIs can run to report/reset failures
+    and admins can run to reset failure counts.
+
+VERSION 2.2.8 - Sep 25, 2004
+  - First separate distribution of pwauth.  This version is identical to
+    the version in the mod_auth_external version 2.2.8 package, except for
+    repackaging and slight modifications to the documentation.
+
+Versions of pwauth previous to version 2.2.8 were distributed as part of
+the mod_auth_external package, and change-log information is included in
+pwauth change log.

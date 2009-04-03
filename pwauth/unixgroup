@@ -1,0 +1,69 @@
+#!/usr/bin/perl
+#
+# This is a group authenticator for use with mod_auth_external using the
+# "environment" argument passing method.  If you are using mod_authnz_external,
+# then a much better choice is to use mod_authz_unixgroup for group checking.
+# It checks if the Unix user ID passed in the USER environment variable is in
+# any of Unix groups (names or numbers) listed in the GROUP environment
+# variable.  It returns
+#     0 - if the user is in one of the groups
+#     1 - if the user is not in any of the groups
+#     2 - if the user does not exist.
+#
+# This isn't a very efficient way to do group checking.  I hope to find time
+# to do something better someday.
+#
+# Typical Usage:
+# In httpd.conf declare an pwauth authenticator and a unixgroup authenticator:
+#
+#   AddExternalAuth pwauth /path/to/pwauth
+#   SetExternalAuthMethod pwauth pipe
+#   AddExternalGroup unixgroup /path/to/unixgroup
+#   SetExternalGroupMethod unixgroup environment
+#
+# In .htaccess file do something like
+#
+#   AuthType Basic
+#   AuthName SystemName
+#   AuthExternal pwauth
+#   GroupExternal unixgroup
+#   require group customers admins staff
+#
+# Here "SystemName" is a string that will be included in the pop-up login
+# box, all Unix groupnames which are to be allowed to login are listed on the
+# "require group" command.  If you are using this with mod_authnz_external,
+# you'll need to add the directive "AuthBasicProvider external", but if you are
+# using mod_authnz_external, you should be using mod_authz_unixgroup instead
+# of this.
+
+# Get primary GID number for the user
+$user= $ENV{USER};
+$gid= (getpwnam($user))[3];
+exit 2 if !defined $gid;	# user does not exist - Reject
+
+# Loop through groups
+foreach $group (split ' ', $ENV{GROUP})
+{
+    if ($group =~ /^\d+$/)
+    {
+    	# Group given as GID number
+	exit 0 if ($group == $gid);
+	# Get list of members
+	$members= (getgrgid($group))[3];
+    }
+    else
+    {
+    	# Group given by name
+	($gname, $x, $ggid, $members)= getgrnam($group);
+	next if !$gname;	# skip non-existant group
+	exit 0 if ($ggid == $gid);
+    }
+
+    # Check if user is in member list
+    foreach $mem (split ' ',$members)
+    {
+    	exit 0 if ($user eq $mem);
+    }
+}
+
+exit 1;
