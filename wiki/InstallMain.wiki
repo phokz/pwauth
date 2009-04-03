@@ -41,4 +41,31 @@ Nearly all Unix systems maintain a lastlog file that keeps record of the last ti
 
 This should not be enabled with PAM, where this is done at a lower level.
 
+===1.4. Set /etc/nologin Options ===
+
+Most Unix systems will refuse logins if the file /etc/nologin exists.  It is normal to configure pwauth to also refuse logins if that file exists.  Alternately you could set it up to have a separate file to disable pwauth logins simply by giving a different path name in the configuration.  Again, this should not be used with PAM.
+
+===1.5. Set Password Expiration Options ===
+
+Most modern Unix systems allow administrators to set dates at which accounts expire and can no longer be used, or at which passwords expire and must be changed.  Sometimes administrators use these features to temporarily disable accounts that should not be usable.  So it is almost always advisable to have pwauth respect these settings.  If your administrators don't use these features, there is no harm, but if they do, they should be respected.
+
+===1.6. Who May Run Pwauth?===
+
+It is generally sensible to restrict what users can run pwauth.  Though there are other programs that users can use to test if password guessesare correct, like "su" and "passwd", pwauth is much easier to interface a password guessing program to, so why not be paranoid and restrict it as much as possible?
+
+If you are using pwauth with mod_auth_external, you will want to restrict it to be runnable from whatever uid your httpd runs as.  (For apache, this is determined by the "User" directive in your httpd.conf file.  It may be called something like "nobody" or "httpd" or "apache".  Usually the easiest way to figure it out is just to do a "ps" and see what most apache processes are running as.)
+
+There are two ways to do this.  First, you can compile in the uid numbers that are allowed to run this program, by listing them on the SERVER_UID variable below.  At runtime, pwauth will check that the uid of the user that invoked it is on this list.  So if you have just one uid that should be able to run pwauth, you can say something like:
+   #define SERVER_UIDS 72
+If you have several, separate them by commas, like this:
+    #define SERVER_UIDS 12,343,93
+The root account can always run this program, so you don't have to to list that.  If you do list it, it must be given last.
+
+The second option is to create a special group, called something like "pwauth" for user id's that are allowed to run pwauth.  To do this, you should compile pwauth with the SERVER_UIDS variable UNDEFINED.  This will disable the runtime uid check.  Then, when you install the pwauth program, set it's group ownership to the "pwauth" group, and permit it so that only the owner and the group can run it.  Do not permit it to be executable to others.  This has the advantage of not requiring a recompile if you want to change the uid list.
+
+===1.7. Minimum User Id===
+
+Typically we don't want to let people use pwauth to log into the "root" account or any other administrative accounts. Those administrative accounts usually have lower numbered user IDs than regular user accounts.  So you can defined MIN_UNIX_UID to reject any logins to accounts with user id numbers below a certain value.
+
+
 = THIS PAGE IS INCOMPLETE =
