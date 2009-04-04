@@ -1,7 +1,10 @@
 Pwauth Change Log
 =================
 
-VERSION 2.3.8 -
+VERSION 2.3.9 - 
+  - Minor documentation fixes
+
+VERSION 2.3.8 - Apr 3, 2009
   - Undefining SERVER_UIDS now disables the runtime uid check.  Documentation
     added to suggest using this, together with group execution permissions on
     the binary, to create a group for users who can run pwauth.  Thanks to

@@ -13,10 +13,10 @@ In "Form Authentication" you display a login form in HTML, like
 
 When a person submits this form, the "login.cgi" program gets run.  It checks
 the login and password, and if they are correct, initiates a session for
-the user.  See http://www.wwnet.net/~janc/auth.html for more information
-about this, including explainations about why it is important for good
-security to use "METHOD=post", and to turn off caching both on the login form
-page and on the first page transmitted after a successful login.
+the user.  See http://unixpapa.com/auth/ for more information about this,
+including explanations about why it is important for good security to use
+"METHOD=post", and to turn off caching both on the login form page and on
+the first page transmitted after a successful login.
 
 It is possible to use 'pwauth' (or any other authenticator written for
 mod_auth_external) with this kind of authentication system.  All you have
