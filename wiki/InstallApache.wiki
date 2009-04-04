@@ -2,6 +2,8 @@
 
 = Configuring mod_auth_external or mod_authnz_external for pwauth =
 
+<wiki:toc>
+
 == 1. Install the module ==
 
 You need version 2.1.1 or later of [http://unixpapa.com/mod_auth_external mod_auth_external] or [http://unixpapa.com/mod_auth_external mod_authnz_external].  See the installation instructions in that distribution for details.
