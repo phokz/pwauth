@@ -11,9 +11,10 @@ You need version 2.1.1 or later of [http://unixpapa.com/mod_auth_external mod_au
 Find the Apache server configuration file.  In the old days it was called httpd.conf.  These days it may be a directory full of miscellaneous files and you may have to do some digging to find the right place to insert local configuration commands.  In OpenSuse, for example, you'd create a new file under /etc/apache2/conf.d containing these commands.
 
 Insert the following lines:
-<pre>
+{{{
    AddExternalAuth pwauth /usr/local/libexec/pwauth
-   SetExternalAuthMethod pwauth pipe</pre>
+   SetExternalAuthMethod pwauth pipe
+}}}
 Obviously if you used a different path for pwauth, you should use that path instead.
 
 == 3. Directory Configuration ==
@@ -21,18 +22,20 @@ Obviously if you used a different path for pwauth, you should use that path inst
 Put an .htaccess file in whatever directory you want to protect. (For .htaccess files to work, you may need to change some "AllowOverride None" directives in your httpd.conf file into "AllowOverride AuthConfig" directives).
 
 A typical .htaccess file using mod_authnz_external would look like:
-<pre>
+{{{
          AuthType Basic
          AuthName Your-Site-Name
          AuthBasicProvider external
          AuthExternal pwauth
-         require valid-user</pre>
+         require valid-user
+}}}
 A typical .htaccess file using mod_auth_external would look like:
-<pre>
+{{{
          AuthType Basic
          AuthName Your-Site-Name
          AuthExternal pwauth
-         require valid-user</pre>
+         require valid-user
+}}}
 
 Alternately, you could put these directives in a &lt;Directory&gt; block in your httpd.conf file.
 
