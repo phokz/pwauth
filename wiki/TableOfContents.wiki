@@ -3,4 +3,5 @@
  * [Introduction Introduction]
  * [InstallMain Installation of Pwauth]
  * [InstallApache Apache Configuration]
+ * [FormAuth] Form Authentication]
  * [StatusCodes Status Codes]
