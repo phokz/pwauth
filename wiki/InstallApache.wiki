@@ -1,7 +1,9 @@
 #summary Configuring mod_auth_external to use pwauth
 #sidebar TableOfContents
 
-= Configuring mod_auth_external or mod_authnz_external for pwauth =
+= Configuring Apache =
+
+If  you want to use pwauth for basic authentication in Apache, then you will need to use mod_authnz_external or, if you are using an old version of Apache, mod_auth_external.
 
 == 1. Install the module ==
 
