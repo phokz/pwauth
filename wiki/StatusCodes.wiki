@@ -1,4 +1,5 @@
 #summary Status Codes Returned by Pwauth
+#sidebar TableOfContents
 
 = Status Codes =
 
