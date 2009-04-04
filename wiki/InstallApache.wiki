@@ -12,8 +12,8 @@ Find the Apache server configuration file.  In the old days it was called httpd.
 
 Insert the following lines:
 {{{
-   AddExternalAuth pwauth /usr/local/libexec/pwauth
-   SetExternalAuthMethod pwauth pipe
+AddExternalAuth pwauth /usr/local/libexec/pwauth
+SetExternalAuthMethod pwauth pipe
 }}}
 Obviously if you used a different path for pwauth, you should use that path instead.
 
@@ -23,18 +23,18 @@ Put an .htaccess file in whatever directory you want to protect. (For .htaccess 
 
 A typical .htaccess file using mod_authnz_external would look like:
 {{{
-         AuthType Basic
-         AuthName Your-Site-Name
-         AuthBasicProvider external
-         AuthExternal pwauth
-         require valid-user
+AuthType Basic
+AuthName Your-Site-Name
+AuthBasicProvider external
+AuthExternal pwauth
+require valid-user
 }}}
 A typical .htaccess file using mod_auth_external would look like:
 {{{
-         AuthType Basic
-         AuthName Your-Site-Name
-         AuthExternal pwauth
-         require valid-user
+AuthType Basic
+AuthName Your-Site-Name
+AuthExternal pwauth
+require valid-user
 }}}
 
 Alternately, you could put these directives in a &lt;Directory&gt; block in your httpd.conf file.
