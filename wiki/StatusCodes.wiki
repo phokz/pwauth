@@ -2,7 +2,7 @@
 
 = Status Codes =
 
-Pwauth will always exit with one of the status codes listed in the table below.
+[Introduction Pwauth] will always exit with one of the status codes listed in the table below.
 
 Codes 50 and above usually represent configuration errors in pwauth.
 
