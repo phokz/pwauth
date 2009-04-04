@@ -48,4 +48,3 @@ All of these can help, but you shouldn't imagine that they completely solve the 
 On the other hand, since I wrote the first version of pwauth in 1996, I have never heard of a single incident in which someone successfully exploited it.  Probably that's because people have had the good sense not to use it on high-value servers that attract concerted attacks by skilled hackers.
 
 So use your own judgement.  It's a useful tool, but not for every application.
-_This section is incomplete_
