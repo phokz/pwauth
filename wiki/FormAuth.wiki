@@ -7,13 +7,14 @@ Although pwauth was designed for use with the mod_auth_external Apache module to
 
 In "Form Authentication" you display a login form in HTML, like
 {{{
-   <FORM ACTION=login.cgi METHOD=post>
-   Login:    <INPUT TYPE=text NAME=login><BR>
-   Password: <INPUT TYPE=password NAME=passwd><BR>
-   <INPUT TYPE=submit VALUE="Login Now">
-   </FORM>
+   <form action="login.cgi" method="post">
+   Login:    <input type="text" name="login"><br>
+   Password: <input type="password" name="passwd"><br>
+   <input type="submit" value="Login Now">
+   </form>
 }}}
-When a person submits this form, the "login.cgi" program gets run.  It checks the login and password, and if they are correct, initiates a session for the user.  See [http://unixpapa.com/auth/ my authentication pages] for more information about this, including explanations about why it is important for good security to use "`METHOD=post`", and to turn off caching both on the login form page and on the first page transmitted after a successful login.
+
+When a person submits this form, the "login.cgi" program gets run.  It checks the login and password, and if they are correct, initiates a session for the user.  See [http://unixpapa.com/auth/ my authentication pages] for more information about this, including explanations about why it is important for good security to use `method="post"`, and to turn off caching both on the login form page and on the first page transmitted after a successful login.
 
 It is possible to use pwauth (or any other authenticator written for mod_auth_external) with this kind of authentication system.  All you have to do is have your CGI program run pwauth when it wants to check the password.
 
@@ -32,6 +33,7 @@ sub trypass {
    return !$?;
 }
 }}}
+
 Obviously the `$pwauth_path` should be defined to wherever you install pwauth, and the `die()` call should be replaced with whatever is an appropriate way to handle a fatal error in your CGI program.
 
 Note that pwauth must be configured so that SERVER_UIDS includes whatever uid your CGI program runs as.  Normally this is the same user ID that httpd runs as, but if your CGIs are running under suExec, then you may need to include other uid numbers.
