@@ -1,5 +1,8 @@
 #summary Main Installation Instructions
 
+*THIS PAGE IS INCOMPLETE*
+See the "INSTALL" and "config.h" files in the distribution.
+
 = Installation Instructions =
 
 ==1. Edit the config.h file==
