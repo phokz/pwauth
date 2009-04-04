@@ -37,7 +37,7 @@ AuthExternal pwauth
 require valid-user
 }}}
 
-Alternately, you could put these directives in a &lt;Directory&gt; block in your httpd.conf file.
+Alternately, you could put these directives in a `<Directory>` block in your httpd.conf file.
 
 If you want to allow users of only certain Unix groups to login, the perl "unixgroup" command included in this directory will do the job, though not very efficiently.  If you are using mod_authnz_external, a better approach is to use [http://unixpapa.com/mod_authz_unixgroup/ mod_authz_unixgroup].  This will not only allow you to restrict logins to users in particular groups, but restrict access to individual files based on group ownership of the files, if used with the standard Apache module mod_authz_owner.
 
