@@ -1,6 +1,7 @@
 #summary Table of Contents
 
  * [Introduction Introduction]
+ * [Risks Security Risks]
  * [InstallMain Installation of Pwauth]
  * [InstallApache Apache Configuration]
  * [FormAuth Form Authentication]
