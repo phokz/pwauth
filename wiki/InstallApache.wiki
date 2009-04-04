@@ -1,7 +1,5 @@
 #summary Configuring mod_auth_external to use pwauth
 
-<wiki:toc>
-
 = Configuring mod_auth_external or mod_authnz_external for pwauth =
 
 == 1. Install the module ==
