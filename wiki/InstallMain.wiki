@@ -1,8 +1,5 @@
 #summary Main Installation Instructions
 
-*THIS PAGE IS INCOMPLETE*
-See the "INSTALL" and "config.h" files in the distribution.
-
 = Installation Instructions =
 
 ==1. Edit config.h ==
@@ -163,5 +160,3 @@ You should probably do a final test, by su-ing to whatever user will be running 
 You will probably need to do some configuration of whatever program is supposed to be invoking pwauth.
 
 If that program is mod_auth_external or mod_authnz_external, then  [InstallApache configuration instructions] are available here.
-
-= THIS PAGE IS INCOMPLETE =
