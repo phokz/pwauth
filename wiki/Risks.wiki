@@ -1,0 +1,36 @@
+#summary Risks of Using System Passwords for Web Authentication
+#sidebar TableOfContents
+
+_This is an *INCOMPLETE DRAFT* document_
+
+== Risks ==
+
+I believe that pwauth, if properly used, provides the most secure method of doing web authentication with system passwords.  However, many knowledgeable people would tell you that I might as well be talking about the safest way to shoot yourself in the head.  There are good reasons using system accounts for web access can be an extremely bad idea.  You should understand these reasons and think carefully about them before doing such a thing.
+
+System accounts are typically much more useful and powerful than the ordinary user accounts in web applications.  They can normally be used to log into the server and start an interactive command shell from which many system resources can be accessed and modified. Since those users have access to hundreds of programs on your system, there is a likelihood that they will be able to find a security hole in one of them that will let them escalate themselves to superuser on your server, at which point they own your server and all the data on it, including, with a little work, all your user's passwords.  These are very high value accounts.
+
+These days most systems only allow system account logins via the SSH protocol, which is a very sophisticated protocol designed from the ground up for security.  The old TELNET and FTP protocols are rarely used anymore because they provide much less secure communications, with greater risk of a system account being compromised.  However, either one of those old abandoned protocols is far more secure than HTTP.  Here are a few of the weaknesses of HTTP:
+
+  * *Promiscuous transmission of plain-text passwords.*  The old TELNET protocol used to send your plain-text password over the net just once, when you were logging in.  HTTP's basic authentication protocol sends it in plain-text in the header of every single request you make.
+
+  * *Caching on intermediate servers.*  In the TELNET protocol, connections were direct from the user's computer to the server.  HTTP allows intermediate proxy servers to cache requests and the passwords with them, so your password may end up stored on all sorts of mysterious computers.
+
+  * *Server Impersonation.*  The SSH protocol has elaborate checks built into it that try to ensure that you are giving your password to the real server and not an impostor.  HTTP has no such checks.  It is certainly possible to fool the users, and maybe possible to fool the browser into giving away passwords to fake servers.
+
+  * *No speed limits on password guessing.*  If you enter a wrong password at a standard login prompt, there is typically a delay before you can try another.  The connection may be dropped after a few wrong guesses.  All this slows down programs that try using dictionary attacks to guess passwords.  In HTTP there are no such limitations.  You can send thousands of HTTP requests every second.
+
+  * *Difficulty of Monitoring.*  It's harder to notice password guessing or unauthorized accesses when they happen over the web, unless you are really alert in monitoring web access logs and error logs.
+
+  * *Browser password caching.*  Most browsers practically beg you to let them remember your password for them.  No doubt some of your users will do this, and it is obviously possible for any virus or malicious user who gains access to their computer to extract those remembered passwords.  If one program (the browser) can get them, then other programs can be written to do the same thing.
+
+  * *Browser vulnerabilities.*  Most TELNET clients were simple programs, fairly unbuggy and hard to exploit.  HTTP clients, on the other hand, are nightmarishly complex and notoriously riddled with security flaws.  Are you sure that nifty new plugin you installed last night doesn't quietly send copies of every password you enter to Nigeria?
+
+  * *Lack of idle timeouts.*  If you wandered away from your computer, your TELNET connection would probably timeout after a while disconnecting you.  A basic authentication login _NEVER_ times out.  You can't even log out of it on most browsers except by completely exiting the browser.  Closing the window does not log you out.  Even closing all browser windows will not log you out on a Macintosh.  The risk of leaving active sessions laying around for other users who come to the computer later is high.
+
+So, if this is such a bad idea, why did I ever write pwauth?  Well, the server I wrote it for, and the only one I ever used it on, was [http://cyberspace.org Grex], an old public access Unix system which gives away free unix shell accounts to anyone who asks for one.  People getting access to those accounts is not so big a security concern if you give them away anyway.  Our concern was only that people not get access to other user's accounts, which is an important concern, but doesn't involve a risk to the general integrity of the server.
+
+Now many of the concerns listed above can be mitigated by features built into pwauth, or by careful configuration and administration of the server.  You may have your own reasons why you are less concerned about the risks.  For example, I'd be more comfortable using pwauth on an intranet than on the open net.  But you really should consider whether maybe you should let your users have separate accounts for web access, with different logins and passwords, so that the consequences of one being compromised are not so great.
+
+== Mitigating Risks ==
+
+_This section needs to be written_
