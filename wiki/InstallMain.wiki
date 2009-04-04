@@ -3,6 +3,8 @@
 
 = Installation Instructions =
 
+Before installing pwauth, please be sure that you have read and understood the [Risks] page.  This is not a tool that is appropriate for every server.
+
 ==1. Edit config.h ==
 
 All configuration of pwauth is done via the config.h file.  You should set or check the following variables:
