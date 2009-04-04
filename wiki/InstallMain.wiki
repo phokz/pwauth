@@ -9,7 +9,7 @@ See the "INSTALL" and "config.h" files in the distribution.
 
 All configuration of pwauth is done via the config.h file.  You should set or check the following variables:
 
-===1.1. Set Authentication Method ===
+===1.1. Authentication Method ===
 
 What API should authentication be done through?  The most common options are:
 
@@ -25,7 +25,7 @@ There are several other more obscure methods used which are documented in the co
 
 In most cases the method that you want if you just want to authenticate from the system password file is SHADOW_SUN or SHADOW_BSD depending on your Unix version.  PAM is slower and more complex to set up, but allows greater flexibility in configuration and allows you to authenticate from other sources.
 
-===1.2. Set Failure Logging ===
+===1.2. Failure Logging ===
 
 A failure log keeps a count of how many bad logins have been attempted for each user,
 and disables logins to any account where some limit is exceeded.  This is useful to
@@ -38,17 +38,17 @@ If you choose to use this, it would probably be good to have your CGI's run the 
 I think most installations don't use this and it should not be enabled with PAM, which performs this function at a lower level.
 
 
-===1.3. Set Lastlog Logging ===
+===1.3. Lastlog Logging ===
 
 Nearly all Unix systems maintain a lastlog file that keeps record of the last time that each user logged into the system.  It is possible to have pwauth update this when successful authentications occur.  This can be important on systems where you expire unused accounts and some users may only log in via the web.
 
 This should not be enabled with PAM, where this is done at a lower level.
 
-===1.4. Set /etc/nologin Options ===
+===1.4. /etc/nologin ===
 
 Most Unix systems will refuse logins if the file /etc/nologin exists.  It is normal to configure pwauth to also refuse logins if that file exists.  Alternately you could set it up to have a separate file to disable pwauth logins simply by giving a different path name in the configuration.  Again, this should not be used with PAM.
 
-===1.5. Set Password Expiration Options ===
+===1.5. Login/Password Expiration ===
 
 Most modern Unix systems allow administrators to set dates at which accounts expire and can no longer be used, or at which passwords expire and must be changed.  Sometimes administrators use these features to temporarily disable accounts that should not be usable.  So it is almost always advisable to have pwauth respect these settings.  If your administrators don't use these features, there is no harm, but if they do, they should be respected.
 
@@ -70,5 +70,22 @@ The second option is to create a special group, called something like "pwauth" f
 
 Typically we don't want to let people use pwauth to log into the "root" account or any other administrative accounts. Those administrative accounts usually have lower numbered user IDs than regular user accounts.  So you can defined MIN_UNIX_UID to reject any logins to accounts with user id numbers below a certain value.
 
+===1.8. Case Sensitivity and Domain Awareness===
+
+The IGNORE_CASE flag causes every login ID to be checked two ways - first as given, then with all uppercase characters converted to lowercase.  This is useful if your site has many habitual Windows users who may be accustomed to login IDs not being case sensitive.  It really only "ignores case" if the actual IDs on your server are all lower case though.
+
+In some environments you may also have windows users accustomed to login names formed like "domain\username".  In such cases, you can set the DOMAIN_AWARE flag, and pwauth will check each login name to see if it contains a backslash, and, if so, discard the backslash and everything before it.
+
+=== 1.9. Sleep Lock ===
+
+When you are logging into a unix system at the "Login:" prompt, you will notice that if you enter an incorrect password, then there is a delay of a few seconds before you are prompted for a new one.  This is to prevent password guessing programs from submitting huge numbers of password guesses quickly.  This is harder to do in a web environment, however, since many http requests can be made simultaneously.
+
+Pwauth handles this problem by sleeping for SLEEP_TIME seconds after each failed authentication, using a lock on the file whose full path is given by SLEEP_LOCK to prevent any other instances of pwauth from running during that time.  The default settings for these options should be suitable for most systems.
+
+In theory this could be a performance problem on extremely heavily used system, though I have never heard of anyone having problems with this.
+
+=== 1.10. Argument Passing ===
+
+Normally the login and password are passed to pwauth through a pipe.  This method is secure on all versions of Unix.  It is possible to configure pwauth to instead take its arguments from environment variables, but this is not recommended because on some versions of Unix it is possible to other users to eavesdrop on a processes environment variable settings, and we do not want user's plain text passwords to be readily visible.
 
 = THIS PAGE IS INCOMPLETE =
