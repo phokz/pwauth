@@ -1,4 +1,5 @@
 #summary Main Installation Instructions
+#sidebar TableOfContents
 
 = Installation Instructions =
 
