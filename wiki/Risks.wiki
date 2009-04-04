@@ -29,8 +29,12 @@ These days most systems only allow system account logins via the SSH protocol, w
 
 So, if this is such a bad idea, why did I ever write pwauth?  Well, the server I wrote it for, and the only one I ever used it on, was [http://cyberspace.org Grex], an old public access Unix system which gives away free unix shell accounts to anyone who asks for one.  People getting access to those accounts is not so big a security concern if you give them away anyway.  Our concern was only that people not get access to other user's accounts, which is an important concern, but doesn't involve a risk to the general integrity of the server.
 
-Now many of the concerns listed above can be mitigated by features built into pwauth, or by careful configuration and administration of the server.  You may have your own reasons why you are less concerned about the risks.  For example, I'd be more comfortable using pwauth on an intranet than on the open net.  But you really should consider whether maybe you should let your users have separate accounts for web access, with different logins and passwords, so that the consequences of one being compromised are not so great.
+Of course, many of the concerns listed above can be mitigated by features built into pwauth, or by careful configuration and administration of the server.  You may have your own reasons why you are less concerned about the risks.  For example, I'd be more comfortable using pwauth on an intranet than on the open net.  But you really should consider whether maybe you should let your users have separate accounts for web access, with different logins and passwords, so that the consequences of one being compromised are not so great.
 
 == Mitigating Risks ==
 
-_This section needs to be written_
+How can we counteract the risks described above?  Well, some are hard, and some are easy.
+
+  * *Use HTTPS.*  Clearly requiring the secure https protocol for all authenticated transactions will help with many of these problem.  Passwords will still be sent in every query, but not in clear text.  Caching by proxies ceases to be a problem, and the risks of impostor servers are somewhat reduced.
+
+_This section is incomplete_
