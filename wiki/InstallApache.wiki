@@ -19,7 +19,7 @@ Obviously if you used a different path for pwauth, you should use that path inst
 
 == 3. Directory Configuration ==
 
-Put an .htaccess file in whatever directory you want to protect. (For .htaccess files to work, you may need to change some "!AllowOverride None" directives in your httpd.conf file into "!AllowOverride !AuthConfig" directives).
+Put an .htaccess file in whatever directory you want to protect. (For .htaccess files to work, you may need to change some "`AllowOverride None`" directives in your httpd.conf file into "`AllowOverride AuthConfig`" directives).
 
 A typical .htaccess file using mod_authnz_external would look like:
 {{{
