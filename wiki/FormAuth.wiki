@@ -26,8 +26,7 @@ sub trypass {
    my $userid= $_[0];
    my $passwd= $_[1];
 
-   open PWAUTH, "|$pwauth_path" or
-      die("Could not run $pwauth_path");
+   open PWAUTH, "|$pwauth_path" or die("Could not run $pwauth_path");
    print PWAUTH "$userid\n$passwd\n";
    close PWAUTH;
    return !$?;
