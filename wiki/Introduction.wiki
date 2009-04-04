@@ -7,7 +7,7 @@ I'm still in the process of moving this project onto this server.  The main webs
 
 ----
 
-== Introduction ==
+= Introduction =
 
 *pwauth* is a unix authentication checking tool, designed to be run by other programs that need to know if a login/password combination is valid.  It was originally designed to do web authentications, in combination with [http://www.unixpapa.com/mod_auth_external mod_auth_external or mod_authnz_external], but has been used in many other web applications and in mail servers.
 
