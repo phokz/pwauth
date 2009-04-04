@@ -64,7 +64,7 @@ If you have several, separate them by commas, like this:
     \#define SERVER_UIDS 12,343,93
 The root account can always run this program, so you don't have to to list that.  If you do list it, it must be given last.
 
-The second option is to create a special group, called something like "pwauth" for user id's that are allowed to run pwauth.  To do this, you should compile pwauth with the SERVER_UIDS variable UNDEFINED.  This will disable the runtime uid check.  Then, when you install the pwauth program, set it's group ownership to the "pwauth" group, and permit it so that only the owner and the group can run it.  Do not permit it to be executable to others.  This has the advantage of not requiring a recompile if you want to change the uid list.
+The second option is to create a special group, called something like "pwauth" for user id's that are allowed to run pwauth.  To do this, you should compile pwauth with the SERVER_UIDS variable UNDEFINED.  This will disable the runtime uid check.  Then, when you install the pwauth program, set it's group ownership to the "pwauth" group, and permit it so that only the owner and the group can run it.  Do not permit it to be executable to others.  This has the advantage of not requiring a recompile if you want to change the uid list.  If you are thinking of distributing pwauth as a precompiled package, then this might be your best option.
 
 ===1.7. Minimum User Id===
 
