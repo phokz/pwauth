@@ -144,6 +144,24 @@ You may want a "nolocal" flag on that line if you are authenticating from a remo
 
 The simplest test is to start a root shell and just run pwauth.  It will attempt to read the login and password from standard input, so type a login name, hit return, then type a password, and hit return (the password will echo on your screen).  The check the status code that was returned (in csh: "echo $status"  in sh: "echo $?").
 
-If the login/password were correct you should get a zero status code.  If not, you will get some other value.  See the list of [StatusCodes status codes] to find the meaning of the various values returned.
+If the login/password were correct you should get a zero status code.  If not, you will get some other value.  See the list of [StatusCodes status codes] to find the meaning of the various values returned.  Any values 50 or greater indicate a configuration error.
+
+== 6. Install Pwauth ==
+
+Install it in some sensible place (say, /usr/local/libexec/pwauth).  Unless you are doing SHADOW_NONE, it should be installed suid-root so that it has the necessary access to read the password database.  That is:
+<pre>
+   chown root pwauth
+   chmod u+s pwauth
+</pre>
+
+If you are using the group method of regulating access to pwauth, then you should chgrp the installed file to whatever group you are using, and permit the file so the only the group can run it ("chmod 4710 pwauth").
+
+You should probably do a final test, by su-ing to whatever user will be running pwauth (e.g. "httpd") and running it from that account.
+
+== 7. Configure the Calling Program ==
+
+You will probably need to do some configuration of whatever program is supposed to be invoking pwauth.
+
+If that program is mod_auth_external or mod_authnz_external, then  [InstallApache configuration instructions] are available here.
 
 = THIS PAGE IS INCOMPLETE =
