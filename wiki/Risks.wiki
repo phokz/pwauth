@@ -1,7 +1,7 @@
 #summary Risks of Using System Passwords for Web Authentication
 #sidebar TableOfContents
 
-== Risks ==
+== Security Risks ==
 
 I believe that pwauth, if properly used, provides the most secure method of doing web authentication with system passwords.  However, many knowledgeable people would tell you that I might as well be talking about the safest way to shoot yourself in the head.  There are good reasons using system accounts for web access can be an extremely bad idea.  You should understand these reasons and think carefully about them before doing such a thing.
 
