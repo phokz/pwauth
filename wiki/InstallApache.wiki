@@ -13,8 +13,7 @@ Find the Apache server configuration file.  In the old days it was called httpd.
 Insert the following lines:
 <pre>
    AddExternalAuth pwauth /usr/local/libexec/pwauth
-   SetExternalAuthMethod pwauth pipe
-</pre>
+   SetExternalAuthMethod pwauth pipe</pre>
 Obviously if you used a different path for pwauth, you should use that path instead.
 
 == 3. Directory Configuration ==
