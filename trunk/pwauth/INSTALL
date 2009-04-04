@@ -74,7 +74,7 @@ with other forms of authentication.
  (7)  Install it in some sensible place (say, /usr/local/libexec/pwauth).
       Unless you are doing SHADOW_NONE, it should be suid-root, so that
       it has the necessary access to read the shadow file.  That is, the
-      file should be owned by root, and you should do "chmod o+s pwauth" on
+      file should be owned by root, and you should do "chmod u+s pwauth" on
       it.  After you've installed it, it is worth su-ing to whatever account
       your httpd runs under and testing pwauth again from that account.  This
       should confirm that all the uid's and suid-bits are configured correctly.
@@ -149,9 +149,9 @@ with other forms of authentication.
 
 	7 -   Limit on number of bad logins exceeded.
 
-        50 -  pwauth was not run with real uid SERVER_UID.  If you get this
-              error code, you probably have SERVER_UID set incorrectly in
-	      pwauth's config.h file.
+        50 -  pwauth was not run with real uid not in the SERVER_UIDS list.
+	      If you get this error code, you probably have SERVER_UIDS set
+	      incorrectly in pwauth's config.h file.
 
         51 -  pwauth was not given a login & password to check.  The means
               the passing of data from mod_auth_external to pwauth is messed
