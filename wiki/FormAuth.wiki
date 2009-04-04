@@ -19,7 +19,7 @@ When a person submits this form, the "login.cgi" program gets run.  It checks th
 It is possible to use pwauth (or any other authenticator written for mod_auth_external) with this kind of authentication system.  All you have to do is have your CGI program run pwauth when it wants to check the password.
 
 Here's a sample function in Perl that does exactly this:
-{{
+{{{
 $pwauth_path= "/usr/local/libexec/pwauth";
 
 sub trypass {
