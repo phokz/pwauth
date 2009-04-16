@@ -6,7 +6,7 @@
 [Introduction Pwauth] will always exit with one of the status codes listed in the table below.
 
 Codes 50 and above usually represent configuration errors in pwauth.
-
+||*code*||*name*||*description*||
 ||  0  || STATUS_OK || Login OK. ||
 ||  1  || STATUS_UNKNOWN || Nonexistant login or (for some configurations) incorrect password. ||
 ||  2  || STATUS_INVALID || Incorrect password (for some configurations).  ||
