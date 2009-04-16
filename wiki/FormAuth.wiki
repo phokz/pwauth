@@ -3,7 +3,7 @@
 
 = Pwauth with Form Authentication =
 
-Although pwauth was designed for use with the mod_auth_external Apache module to do "Basic Authentication", it can also be "Form Authentication".
+Although pwauth was designed for use with the mod_auth_external Apache module to do "Basic Authentication", it can also be used with "Form Authentication".
 
 In "Form Authentication" you display a login form in HTML, like
 {{{
