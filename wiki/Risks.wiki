@@ -1,4 +1,5 @@
 #summary Risks of Using System Passwords for Web Authentication
+#labels Featured
 #sidebar TableOfContents
 
 == Security Risks ==
