@@ -4,7 +4,7 @@
 
 = Introduction =
 
-*pwauth* is a unix authentication checking tool, designed to be run by other programs that need to know if a login/password combination is valid.  It was originally designed to do web authentications, in combination with [http://www.unixpapa.com/mod_auth_external mod_auth_external or mod_authnz_external], but has been used in many other web applications and in mail servers.
+*pwauth* is a unix authentication checking tool, designed to be run by other programs that need to know if a login/password combination is valid.  It was originally designed to do web authentications, in combination with [http://code.google.com/p/mod-auth-external/ mod_auth_external or mod_authnz_external], but has been used in many other web applications and in mail servers.
 
 What *pwauth* actually does is very simple.  You pass it a login and password, and it
 returns a flag telling if they are valid.  Normally it checks against your Unix server's system password database, but it can also be configured to use PAM to authentication from a wide range of other sources.
