@@ -19,3 +19,5 @@ Codes 50 and above usually represent configuration errors in pwauth.
 ||  51 || STATUS_INT_ARGS || pwauth was not given a login & password to check.  The means the passing of data from mod_auth_external to pwauth is messed up.  Most likely one is trying to pass data via environment variables, while the other is trying to pass data via a pipe. ||
 ||  52 || STATUS_INT_ERR || one of several rare and unlikely internal errors occurred.  You'll have to read the source code to figure these out. ||
 ||  53 || STATUS_INT_NOROOT || pwauth was not able to read the password database.  Usually this means it is not running as root.  (PAM and login.conf configurations will return 1 in this case.) ||
+
+If you see a negative error code (or a number like 255 or 254) reported in the Apache error log, then that is an error code from `mod_authnz_external` and means that it was unable to run pwauth at all.  See the [http://code.google.com/p/mod-auth-external/wiki/Configuration mod_auth_external documentation] for more information.
