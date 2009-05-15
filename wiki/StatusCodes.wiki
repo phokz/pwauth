@@ -13,7 +13,7 @@ Codes 50 and above usually represent configuration errors in pwauth.
 ||  3  || STATUS_BLOCKED || Uid number is below MIN_UNIX_UID value configured in config.h. ||
 ||  4  || STATUS_EXPIRED || Login ID has expired. ||
 ||  5  || STATUS_PW_EXPIRED || Login's password has expired. ||
-||  6  || SSTATUS_NOLOGIN || Logins to system have been turned off (usually by /etc/nologin file). ||
+||  6  || STATUS_NOLOGIN || Logins to system have been turned off (usually by /etc/nologin file). ||
 ||  7  || STATUS_MANYFAILES || Limit on number of bad logins exceeded. ||
 || 50  || STATUS_INT_USER || pwauth was invoked by a uid not on the SERVER_UIDS list.  If you get this error code, you probably have SERVER_UIDS set incorrectly in pwauth's config.h file. ||
 ||  51 || STATUS_INT_ARGS || pwauth was not given a login & password to check.  The means the passing of data from mod_auth_external to pwauth is messed up.  Most likely one is trying to pass data via environment variables, while the other is trying to pass data via a pipe. ||
