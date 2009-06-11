@@ -123,7 +123,9 @@ main(int argc, char **argv)
 #ifdef UNIX_LASTLOG
 	lastlog();
 #endif
+#ifdef SLEEP_LOCK
 	snooze(0);
+#endif
 	exit(STATUS_OK);
     }
     else
@@ -132,7 +134,9 @@ main(int argc, char **argv)
 #ifdef KEEP_FAILLOG
 	log_failure();
 #endif
+#ifdef SLEEP_LOCK
 	snooze(SLEEP_TIME);
+#endif
 	exit(status);
     }
 }
