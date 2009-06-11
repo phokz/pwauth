@@ -2,6 +2,8 @@ Pwauth Change Log
 =================
 
 VERSION 2.3.9 - 
+  - Rearranged ifdef's so that undefining SLEEP_LOCK actually completely
+    disables the sleep-on-failure behavior.
   - Minor documentation fixes
 
 VERSION 2.3.8 - Apr 3, 2009

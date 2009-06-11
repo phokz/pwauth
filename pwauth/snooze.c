@@ -31,7 +31,10 @@
  * =======================================================================
  */
 
+
 #include "pwauth.h"
+
+#ifdef SLEEP_LOCK
 
 /* SNOOZE - Do a serialized sleep of the given number of seconds.  This means,
  * wait till no other pwauth processes are in their sleeps, and then sleep
@@ -41,21 +44,17 @@
 
 snooze(int seconds)
 {
-#ifdef SLEEP_LOCK
     int slfd;
-#endif
 
     /* Lock the sleep-lock file to serialize our sleeps */
-#ifdef SLEEP_LOCK
     if ((slfd= open(SLEEP_LOCK,O_CREAT|O_RDONLY,0644)) >= 0)
 	flock(slfd,LOCK_EX);
-#endif
 
     sleep(seconds);
 
     /* Release sleep-lock file */
-#ifdef SLEEP_LOCK
     /*flock(slfd,LOCK_UN);*/
     close(slfd);
-#endif
 }
+
+#endif
