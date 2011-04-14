@@ -30,16 +30,22 @@ with other forms of authentication.
       create a /etc/pam.d/pwauth file or edit the /etc/pam.conf file.
 
       If you have a /etc/pam.d directory, you need to create a file named
-      "pwauth" inside it.  To authenticate out of the Unix Shadow file
-      under Redhat 6.x, the /etc/pam.d/pwauth file should look something like
-      this:
+      "pwauth" inside it.  The contents of this file are going to be
+      entirely different for different versions of Unix, since there is
+      no standardization here.  Your best bet is probably to take
+      an existing file in that directory and modify it.  The few
+      ancient examples listed below should be taken more as examples of
+      the general appearance of these things than as useful prototypes.
+
+      To authenticate out of the Unix Shadow file under Redhat 6.x, the
+      /etc/pam.d/pwauth file would look something like this:
 
         auth       required     /lib/security/pam_pwdb.so shadow nullok
         auth       required     /lib/security/pam_nologin.so
         account    required     /lib/security/pam_pwdb.so
 
-      Under OS X 10.4.11, something like the following works (possibly the
-      pam_securityserver line should be removed):
+      Under OS X 10.4.11, the following is reported to work (possibly
+      the pam_securityserver line should be removed):
 
         auth       required     pam_nologin.so
 	auth       sufficient   pam_securityserver.so
