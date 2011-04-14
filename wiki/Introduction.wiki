@@ -22,13 +22,13 @@ Typical applications for *pwauth* include:
   "Basic Authentication" is the authentication system built into most browsers, where the browser provides a pop-up login box asking the user for their login/password and the authentication is negotiated between the user's browser and the http daemon. This is relatively rarely used on production websites these days. In this configuration pwauth is run by Apache through the mod_auth_external. It can be used to protect both CGI programs and static documents. CGIs do not have to do any authentication themselves - the name of the logged in users, if any, is passed to them by Apache.
 
   * _Form-Based Authentication for Web Applications_.
-  In most modern websites authentication is not handled by the http daemon, but by the CGI programs running under it. In such cases, the login/password input boxes generally appear on the web page, and the data is passed to the CGI program, which does the check against the user database itself. Usually after the inital login the CGI program issues a session ID which is then sent back to the server with each new page request, so that we can tell that the user is already logged in. In this configuration, pwauth would be run directly by the CGI. Mod_auth_external is not needed.
+  In most modern websites authentication is not handled by the http daemon, but by the CGI programs running under it. In such cases, the login/password input boxes generally appear on the web page, and the data is passed to the CGI program, which does the check against the user database itself. Usually after the inital login the CGI program issues a session ID which is then sent back to the server with each new page request, so that we can tell that the user is already logged in. In this configuration, *pwauth* would be run directly by the CGI. Mod_auth_external is not needed.
 
   * _SMTP Authentication for Mail Servers_.
   The *pwauth* program has been used with the exim mail server to authenticate users.  See instructions [http://wiki.exim.org/AuthenticatedSmtpUsingPwauth here].
 
-  * _Many Others_ *
-  Any time a non-root program wants to check the validity of an authentication, pwauth is likely to be a useful tool, so it has been used in a wide variety of applications, including [http://wiki.hudson-ci.org/display/HUDSON/pwauth Hudson].
+  * _Many Others_
+  Any time a non-root program wants to check the validity of an authentication, *pwauth* is likely to be a useful tool, so it has been used in a wide variety of applications, including [http://wiki.hudson-ci.org/display/HUDSON/pwauth Hudson].
 
 = Authentication Sources =
 
