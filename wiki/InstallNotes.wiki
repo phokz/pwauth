@@ -10,7 +10,7 @@ This page includes notes on installing pwauth on various versions of Unix. These
 
 From Micah R Ledbetter:
 
-  * Use the regular PAM option not the PAM_OLD_OS_X option.
+  * Use the regular PAM option not the PAM_OS_X or PAM_OLD_OS_X option.
 
   * The Mac OS X apache user id uid 70.
 
