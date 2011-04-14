@@ -27,6 +27,9 @@ Typical applications for *pwauth* include:
   * _SMTP Authentication for Mail Servers_.
   The *pwauth* program has been used with the exim mail server to authenticate users.  See instructions [http://wiki.exim.org/AuthenticatedSmtpUsingPwauth here].
 
+  * _Many Others_ *
+  Any time a non-root program wants to check the validity of an authentication, pwauth is likely to be a useful tool, so it has been used in a wide variety of applications, including [http://wiki.hudson-ci.org/display/HUDSON/pwauth Hudson].
+
 = Authentication Sources =
 
 *Pwauth* can check logins any of a variety of unix password database API's:
