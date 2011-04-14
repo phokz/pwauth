@@ -118,8 +118,8 @@
 /* #define SHADOW_AIX		/* AIX */
 /* #define SHADOW_HPUX		/* HPUX ? */
 
-/* #define PAM			/* Linux PAM or OpenPAM*/
-/* #define PAM_OS_X		/* PAM on OS X */
+/* #define PAM			/* Linux PAM or OpenPAM */
+/* #define PAM_OLD_OS_X		/* PAM on OS X version 10.5 or older */
 /* #define PAM_SOLARIS		/* PAM on Solaris other than 2.6 */
 /* #define PAM_SOLARIS_26	/* PAM on Solaris 2.6 */
 /* #define LOGIN_CONF_OPENBSD	/* login.conf on OpenBSD */
@@ -243,11 +243,11 @@
  * way to figure it out is just to do a "ps" and see what most apache processes
  * are running as.)
  *
- * There are two ways to do this.  First, you can compile in the uid numbers
- * that are allowed to run this program, by listing them on the SERVER_UID
- * variable below.  At runtime, pwauth will check that the uid of the user
- * that invoked it is on this list.  So if you have just one uid that should
- * be able to run pwauth, you can say something like:
+ * There are two ways to configure this.  First, you can compile in the uid
+ * numbers that are allowed to run this program, by listing them on the
+ * SERVER_UID variable below.  At runtime, pwauth will check that the uid
+ * of the user that invoked it is on this list.  So if you have just one
+ * uid that should be able to run pwauth, you can say something like:
  *    #define SERVER_UIDS 72
  * If you have several, separate them by commas, like this:
  *    #define SERVER_UIDS 12,343,93

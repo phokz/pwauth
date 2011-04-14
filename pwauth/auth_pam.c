@@ -41,7 +41,7 @@
 #ifdef NEED_UID
 #include <pwd.h>
 #endif
-#ifdef PAM_OS_X
+#ifdef PAM_OLD_OS_X
 #include <pam/pam_appl.h>
 #else
 #include <security/pam_appl.h>
