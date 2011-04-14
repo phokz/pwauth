@@ -117,7 +117,9 @@ Skip this section if you are not using PAM.
 
 Every program that uses PAM needs a PAM configuration.  There are two common ways in which PAM configurations are arranged.
 
-If you have a /etc/pam.d directory, then you will need to create a file named "pwauth" inside it.  The exact commands needed vary among different Unix and Linux distributions.  Looking at the other files in that directory can give you a lot of clues about what is needed.  Under Redhat 6.x, I used this to authenticate out of the shadow password file:
+If you have a /etc/pam.d directory, then you will need to create a file named "pwauth" inside it.  The exact commands needed vary among different Unix and Linux distributions.  Looking at the other files in that directory can give you a lot of clues about what is needed.  There are a few really old examples listed here. For more, see the [InstallNotes] page.
+
+Under Redhat 6.x, I used this to authenticate out of the shadow password file:
 <pre>
         auth       required     /lib/security/pam_pwdb.so shadow nullok
         auth       required     /lib/security/pam_nologin.so
