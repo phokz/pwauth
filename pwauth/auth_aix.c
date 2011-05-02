@@ -40,11 +40,11 @@
 #endif
 #include <userpw.h>
 
-/* ===================== AIX Authentication ===================== */
+/* ============= Low-Level AIX Authentication ===================== */
 
 
-/* CHECK_AUTH - Check a login and return a status code.
- * (This version for systems with a getuserpw() call.)
+/* CHECK_AUTH - Check a login against the system password file and return a
+ * status code. (This version for systems with a getuserpw() call.)
  */
 
 int check_auth(char *login, char *passwd)
@@ -68,3 +68,41 @@ int check_auth(char *login, char *passwd)
     return(strcmp(cpass, upwd->upw_passwd) ? STATUS_INVALID : STATUS_OK);
 }
 #endif /* SHADOW_AIX */
+
+
+#ifdef AUTHENTICATE_AIX
+#ifdef NEED_UID
+#include <sys/types.h>
+#include <pwd.h>
+#endif
+#include <userpw.h>
+#include <usersec.h>
+
+/* ================ High-Level AIX Authentication ==================== */
+
+
+/* CHECK_AUTH - Check a login through the high-level AIX authentication
+ * interface and return a status code.
+ */
+
+int check_auth(char *login, char *passwd)
+{
+    char *cpass;
+    char *message;
+    int i= 0;
+    int stat = STATUS_INVALID;
+#ifdef NEED_UID
+    struct passwd *pwd;
+    if ((pwd= getpwnam(login)) == NULL) return(STATUS_UNKNOWN);
+    hisuid= pwd->pw_uid;
+    haveuid= 1;
+#endif
+#ifdef MIN_UNIX_UID
+    if (hisuid < MIN_UNIX_UID) return(STATUS_BLOCKED);
+#endif
+    if (authenticate(login, passwd, &i, &message) == 0)
+      { stat = STATUS_OK; }
+    free(&message);  
+    return(stat);
+}
+#endif /* AUTHENICATE_AIX */
