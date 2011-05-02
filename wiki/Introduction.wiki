@@ -37,11 +37,14 @@ Typical applications for *pwauth* include:
   * _Direct system password database access_.
   This uses the low-level system interface to the password database to check the password. Typically this means calling something like getpwnam() to look the given login name up the database, and then running crypt() on the given password to see if it matches the value in the database. The exact system calls vary significantly for different unix systems. Pwauth includes support for all popular systems and some unpopular ones. This is generally the best approach from a pure performance point of view. 
 
+  * _PAM authentication_.
+  PAM (Portable Authentication Module) is a still higher level interface to the authentication system supported by some versions of Unix (notably Solaris, Linux and FreeBSD). With PAM there is a configuration file that specifies the authentication requirements for different programs, designating which dynamically loaded libraries to use to do the authentication. Authentication from the system password database is only one of many possibilities. Another common application is to use the pam_smb module to do NT-style SMB authentication.
+
   * _Login.conf authentication_. (currently OpenBSD only)
   Some versions of Unix, mainly the BSD versions, have a "login.conf" file that can be used to configure authentication for different classes of users. Among other things, the configuration file specifies a program to be run to authenticate a user. For OpenBSD only, version 2.3.0 of pwauth adds the ability to read the login.conf file and authenticate users by the method specified there. Though substantially slower than directly accessing the password database, this configuration is useful if you are using unusual settings in "login.conf" and want pwauth to comply with them.
 
-  * _PAM authentication_.
-  PAM (Portable Authentication Module) is a still higher level interface to the authentication system supported by some versions of Unix (notably Solaris, Linux and FreeBSD). With PAM there is a configuration file that specifies the authentication requirements for different programs, designating which dynamically loaded libraries to use to do the authentication. Authentication from the system password database is only one of many possibilities. Another common application is to use the pam_smb module to do NT-style SMB authentication.
+  * _AIX authentication_.
+  The AIX operating system has it's own mechanism, similar to login.conf, that can be used to configure authentication for each user. Version 2.3.9 of pwauth adds the ability to authenticate through this interface.
 
 = Features =
 
