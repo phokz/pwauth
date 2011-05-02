@@ -71,8 +71,9 @@
  *    ain't Grex, you ain't got it.
  *
  *  - SHADOW_AIX:  This is the AIX shadow password system.  It uses getuserpw()
- *    to fetch passwords and (apparantly) crypt() to encrypt them.  This has
- *    not been tested.  Shadow BSD is also likely to work with AIX.
+ *    to fetch passwords and (apparantly) crypt() to encrypt them. This has
+ *    not been tested.  Shadow BSD is also likely to work with AIX. The
+ *    AUTHENTICATE_AIX option is probably a better option for AIX users.
  *
  *  - SHADOW_HPUX:  This is the HP-UX shadow password system.  It uses
  *    getprpwnam() to fetch passwords and either crypt() or bigcrypt() to
@@ -103,26 +104,39 @@
  *  - LOGIN_CONF_OPENBSD:  Many BSD derived systems use a login.conf file to
  *    configure authentication instead of (or in addition to) PAM.  We
  *    currently support authentication through this mechanism only for
- *    OpenBSD.  Of course, if you login.conf configuration is standard, you
+ *    OpenBSD.  Of course, if your login.conf configuration is standard, you
  *    can just use SHADOW_BSD, but if you want pwauth to respect settings
- *    in login.conf this option can be used instead.  The API used here, is
+ *    in login.conf this option can be used instead. The API used here, is
  *    however, pretty much unique to OpenBSD and will not work on NetBSD or
  *    FreeBSD.
+ *
+ *  - AUTHENTICATE_AIX: AIX has it's own system for configuring authentication
+ *    via various files in the /etc/security directory. This can be used to
+ *    configure special authenication parameters on a per-user basis including
+ *    things like authenticating via kerberos and ldap and such like. We can
+ *    tie into this interface via the authenticate() system call. The module
+ *    to suppor this was contributed by a user and has not been tested by
+ *    the author.
  */
+
+   /* LOW-LEVEL OPTIONS */
 
 /* #define SHADOW_NONE		/**/
 /* #define SHADOW_BSD		/* FreeBSD, NetBSD, OpenBSD, BSDI, OS X */
 #define SHADOW_SUN		/* Linux, Solaris, IRIX */
 /* #define SHADOW_JFH		/**/
 /* #define SHADOW_MDW		/**/
-/* #define SHADOW_AIX		/* AIX */
+/* #define SHADOW_AIX		/* AIX (see also AUTHENTICATE_AIX) */
 /* #define SHADOW_HPUX		/* HPUX ? */
+
+   /* HIGH-LEVEL OPTIONS */
 
 /* #define PAM			/* Linux PAM or OpenPAM */
 /* #define PAM_OLD_OS_X		/* PAM on OS X version 10.5 or older */
 /* #define PAM_SOLARIS		/* PAM on Solaris other than 2.6 */
 /* #define PAM_SOLARIS_26	/* PAM on Solaris 2.6 */
 /* #define LOGIN_CONF_OPENBSD	/* login.conf on OpenBSD */
+/* #define AUTHENTICATE_AIX	/* AIX authenticate() function */
 
 
 /* There is also limited support for two failure logging systems (the database
@@ -138,8 +152,8 @@
  * Very few Unix systems seem to have faillog files installed, so most
  * installations will not want this option.
  *
- * No faillog option should be used with PAM.  This kind of logging is handled
- * at a lower level with PAM.
+ * No faillog option should be used with PAM or AUTHENTICATE_AIX.  This kind
+ * of logging is handled at a lower level within those systems.
  *
  *  - FAILLOG_JFH:  This is associated with the JFH shadow system.  Some Linux
  *    systems may have this, but most don't seem to.  Failures are logged in

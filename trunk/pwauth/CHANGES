@@ -1,7 +1,10 @@
 Pwauth Change Log
 =================
 
-VERSION 2.3.9 - 
+VERSION 2.3.9 - May 2, 2011
+  - Add AUTHENTICATE_AIX option for authenticating via AIX's authentication
+    configuration system.  Thanks to Hans Dieter Petersen of the University
+    of Bonn for this implementation.
   - Renamed PAM_OS_X configuration setting to PAM_OLD_OS_X since it only
     is needed for OS X 10.5 and older.
   - Rearranged ifdef's so that undefining SLEEP_LOCK actually completely
