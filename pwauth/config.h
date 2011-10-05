@@ -112,10 +112,10 @@
  *
  *  - AUTHENTICATE_AIX: AIX has it's own system for configuring authentication
  *    via various files in the /etc/security directory. This can be used to
- *    configure special authenication parameters on a per-user basis including
+ *    configure special authentication parameters on a per-user basis including
  *    things like authenticating via kerberos and ldap and such like. We can
  *    tie into this interface via the authenticate() system call. The module
- *    to suppor this was contributed by a user and has not been tested by
+ *    to support this was contributed by a user and has not been tested by
  *    the author.
  */
 
@@ -139,13 +139,13 @@
 /* #define AUTHENTICATE_AIX	/* AIX authenticate() function */
 
 
-/* There is also limited support for two failure logging systems (the database
- * that informs you that "there have been 3426 unsuccessful attempts to log
- * into your account since your last login" and which may disable accounts
- * with too many failed logins).
+/* There is also limited support for three failure logging systems (the
+ * database that informs you that "there have been 3426 unsuccessful attempts
+ * to log into your account since your last login" and which may disable
+ * accounts with too many failed logins).
  *
  * If a FAILLOG option is enabled, pwauth will increment the failure count
- * each time there is a failed attempt to login.  Depending on the the
+ * each time there is a failed attempt to login.  Depending on the
  * configuration, it may also deny logins to users who have had too many
  * bad login attempts.
  *
@@ -164,7 +164,7 @@
  *    in faillog.h.
  *
  *  - FAILLOG_OPENBSD:  OpenBSD has a faillog, although it does not disable
- *    logins if any maximum exceeded.  Failure counts are kept in
+ *    logins if any maximum is exceeded.  Failure counts are kept in
  *    /var/log/failedlogin.  There is no system header file that defines the
  *    format of this file, however.  Instead the definition for the file
  *    format is embedded in the "login" source code.  Bad things will happen
@@ -278,7 +278,7 @@
  * to change the uid list.
  */
 
-#define SERVER_UIDS 72		/* user "nobody" */
+#define SERVER_UIDS 30		/* user "wwwrun" on the author's system */
 
 
 /* If MIN_UNIX_UID is defined to an integer, logins with uid numbers less than
@@ -296,6 +296,7 @@
 /* If IGNORE_CASE is defined, the login given is checked in two different
  * ways. First without any changes and then with all letters converted to
  * lower case. This is useful for users accustomed to the Windows environment.
+ * This ignores the case of the login name only, not the password.
  */
 
 /* #define IGNORE_CASE             /**/
@@ -303,7 +304,7 @@
 
 /* If DOMAIN_AWARE is enabled, then we we check login names to see if they
  * contain a backslash, and discard anything up to and including the backslash.
- * This is for use in environments where there are windows users accustomed
+ * This is for use in environments where there are Windows users accustomed
  * to login names formed like "domain\username".
  */
 

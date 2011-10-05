@@ -1,6 +1,13 @@
 Pwauth Change Log
 =================
 
+VERSION 2.3.10 - Oct 5, 2011
+  - Changed the serialized sleep code in snooze.c to use fcntl() locking
+    instead of flock() locking.  Fcntl() locking is a POSIX standard and
+    is likely to work better on more systems, notably including Solaris
+    which doesn't seem to support flock() at all any more.
+  - Minor fixes to typos in various documentation.
+
 VERSION 2.3.9 - May 2, 2011
   - Add AUTHENTICATE_AIX option for authenticating via AIX's authentication
     configuration system.  Thanks to Hans Dieter Petersen of the University

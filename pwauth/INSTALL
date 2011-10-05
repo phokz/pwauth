@@ -72,12 +72,12 @@ with other forms of authentication.
       that root access isn't required, you should be able to use mod_auth_pam
       instead of mod_auth_external and pwauth and get faster authentications.
 
- (6)  Test the pwauth program.  As root, you can just run the thing, type
+ (7)  Test the pwauth program.  As root, you can just run the thing, type
       in a login (hit return) and a password (hit return), and then check
       the exit code (in csh:  "echo $status"  in sh:  "echo $?").  It should
       be 0 for correct login/password pairs and 1 otherwise.
 
- (7)  Install it in some sensible place (say, /usr/local/libexec/pwauth).
+ (8)  Install it in some sensible place (say, /usr/local/libexec/pwauth).
       Unless you are doing SHADOW_NONE, it should be suid-root, so that
       it has the necessary access to read the shadow file.  That is, the
       file should be owned by root, and you should do "chmod u+s pwauth" on
