@@ -45,15 +45,21 @@
 snooze(int seconds)
 {
     int slfd;
+    struct flock lock;
+    lock.l_type= F_WRLCK;
+    lock.l_whence= SEEK_SET;
+    lock.l_start= 0;
+    lock.l_len= 0;
 
     /* Lock the sleep-lock file to serialize our sleeps */
-    if ((slfd= open(SLEEP_LOCK,O_CREAT|O_RDONLY,0644)) >= 0)
-	flock(slfd,LOCK_EX);
+
+    if ((slfd= open(SLEEP_LOCK,O_CREAT|O_RDWR,0644)) >= 0)
+	fcntl(slfd,F_SETLKW,&lock);
 
     sleep(seconds);
 
     /* Release sleep-lock file */
-    /*flock(slfd,LOCK_UN);*/
+    /*lock.l_type= F_UNLCK; fcntl(slfd,F_SETLK,&lock);*/
     close(slfd);
 }
 
