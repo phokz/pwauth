@@ -18,6 +18,13 @@ LOCALFLAGS= -g
 
 # -------------------- No User Servicable Parts Below -----------------------
 
+TAR= README INSTALL CHANGES FORM_AUTH Makefile main.c checkfaillog.c \
+	fail_check.c fail_log.c lastlog.c nologin.c snooze.c auth_aix.c \
+	auth_bsd.c auth_hpux.c auth_mdw.c auth_openbsd.c auth_pam.c \
+	auth_sun.c config.h fail_log.h pwauth.h unixgroup
+
+.PHONY: clean distclean
+
 CFLAGS= $(LOCALFLAGS)
 
 pwauth: main.o auth_aix.o auth_bsd.o auth_hpux.o auth_mdw.o auth_openbsd.o \
@@ -50,3 +57,6 @@ clean:
 
 distclean:
 	rm -f *.o pwauth checkfaillog
+
+pwauth.tar: $(TAR)
+	tar cvf pwauth.tar $(TAR)
