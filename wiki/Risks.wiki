@@ -42,7 +42,7 @@ How can we counteract the risks described above?  Well, some are hard, and some 
 
   * *Failure Logging.*  Pwauth can be configured to count the number of failed login attempts to each account since the last successful one, and to refuse further login attempts if the number goes too high. This is another way to limit password guessing.
 
-  * *Don't Use Mod_Authn_Socache.* This module, new in Apache 2.4, is very tempting. It caches login credentials so that you don't have to keep re-running the authenticator over and over again for the same user. That's a big performance gain. But the cache it maintains is essentially an Apache-readable copy of your system password file, containing the encrypted passwords of your active users. Having that sitting around is only slightly less of a problem than making your password file readable to Apache would have been in the first place.
+  * *Don't Use !Mod_Authn_Socache.* This module, new in Apache 2.4, is very tempting. It caches login credentials so that you don't have to keep re-running the authenticator over and over again for the same user. That's a big performance gain. But the cache it maintains is essentially an Apache-readable copy of your system password file, containing the encrypted passwords of your active users. Having that sitting around is only slightly less of a problem than making your password file readable to Apache would have been in the first place.
 
   * *Monitoring Logs.*  Many attacks against pwauth could be noticed early if you monitor the logs carefully, including the access logs, error logs and failure logs.  Ideally you would have tools in place that automatically detect attacks in progress so that defensive action can be taken quickly.
 
