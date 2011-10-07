@@ -48,7 +48,7 @@ How can we counteract the risks described above?  Well, some are hard, and some 
 
   * *Form-based Authentication.*  With basic authentication users cannot log off easily and there are no idle timeouts.  Using a [FormAuth form-based authentication] approach can solve these problems, if done carefully.
 
-All of these can help, but you shouldn't imagine that they completely solve the problem, and all of them increase the difficulty of setting up and maintaining the system.
+All of these can help, but you shouldn't imagine that they completely solve the problem, and most of them increase the difficulty of setting up and maintaining the system.
 
 On the other hand, since I wrote the first version of pwauth in 1996, I have never heard of a single incident in which someone successfully exploited it.  Probably that's because people have had the good sense not to use it on high-value servers that attract concerted attacks by skilled hackers.
 
