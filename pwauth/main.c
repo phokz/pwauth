@@ -52,7 +52,10 @@ main(int argc, char **argv)
     char login[BFSZ+1], passwd[BFSZ+1];
     char *c, *strchr();
 #endif
-    int uid,i;
+#ifdef SERVER_UIDS
+    int uid;
+#endif
+    int i;
     int status;
     struct rlimit rlim;
 
