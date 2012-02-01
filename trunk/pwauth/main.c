@@ -50,7 +50,7 @@ main(int argc, char **argv)
     char *login, *passwd;
 #else
     char login[BFSZ+1], passwd[BFSZ+1];
-    char *c, *strchr();
+    char *c;
 #endif
 #ifdef SERVER_UIDS
     int uid;
