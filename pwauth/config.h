@@ -270,10 +270,11 @@
  *
  * The second option is to create a special group, called something like
  * "pwauth" for user id's that are allowed to run pwauth.  To do this, you
- * should compile pwauth with the SERVER_UIDS variable UNDEFINED.  This will
- * disable the runtime uid check.  Then, when you install the pwauth program,
- * set it's group ownership to the "pwauth" group, and permit it so that only
- * the owner and the group can run it.  Do not permit it to be executable to
+ * should compile pwauth with the SERVER_UIDS variable UNDEFINED (that is
+ * the definition should be removed or commented out).  This will disable the
+ * runtime uid check.  Then, when you install the pwauth program, set it's
+ * group ownership to the "pwauth" group, and permit it so that only the
+ * owner and the group can run it.  Do not permit it to be executable to
  * others.  This has the advantage of not requiring a recompile if you want
  * to change the uid list.
  */
