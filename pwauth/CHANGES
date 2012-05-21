@@ -4,6 +4,7 @@ Pwauth Change Log
 VERSION 2.3.11 -
   - Don't define "uid" variable if SERVER_UID is not defined.
   - Removed old-style strchr prototype.
+  - Clarified some instructions in config.h.
 
 VERSION 2.3.10 - Oct 5, 2011
   - Changed the serialized sleep code in snooze.c to use fcntl() locking
