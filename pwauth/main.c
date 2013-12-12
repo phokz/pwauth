@@ -110,7 +110,7 @@ main(int argc, char **argv)
 
     bzero(passwd,strlen(passwd));	/* Erase plain-text from our memory */
 
-#ifdef FAILLOG_JFH
+#if defined(FAILLOG_JFH) || defined(FAILLOG_OPENBSD) || defined(FAILLOG_PWAUTH)
     if (status == STATUS_OK && !check_fails())
 	status= STATUS_MANYFAILS;
 #endif
