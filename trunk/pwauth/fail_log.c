@@ -106,7 +106,7 @@ void log_failure()
 
 
 #ifdef FAILLOG_OPENBSD
-/* CHECK_FAILS - Check if the account is disable dued to the maximum number of
+/* CHECK_FAILS - Check if the account is disabled due to the maximum number of
  * failed logins being exceeded.  Returns true if the account is OK to log
  * into or if the faillog information doesn't exist.  If the count has not
  * been exceeded, then the count is reset to zero.
@@ -129,10 +129,10 @@ int check_fails()
 		sizeof(struct badlogin) || flog.bl_time == 0)
 	    memset(&flog, 0, sizeof(struct badlogin));
 #ifdef MAX_FAIL_COUNT
-	result= (flog.count >= MAX_FAIL_COUNT);
+	result= (flog.count < MAX_FAIL_COUNT);
 #endif
 #ifdef RESET_FAIL_COUNT
-	if (!result && flog.count > 0)
+	if (result && flog.count > 0)
 	{
 	    flog.count= 0;
 	    lseek(flfd, hisuid * sizeof(struct badlogin), 0);
