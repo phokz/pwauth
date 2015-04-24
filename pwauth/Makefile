@@ -29,12 +29,13 @@ CFLAGS= $(LOCALFLAGS)
 
 pwauth: main.o auth_aix.o auth_bsd.o auth_hpux.o auth_mdw.o auth_openbsd.o \
 	auth_pam.o auth_sun.o fail_log.o lastlog.o nologin.o snooze.o
-	$(CC) -o pwauth $(CFLAGS) main.o auth_aix.o auth_bsd.o auth_hpux.o \
-		auth_mdw.o auth_openbsd.o auth_pam.o auth_sun.o fail_log.o \
-		lastlog.o nologin.o snooze.o $(LIB)
+	$(CC) -o pwauth $(CFLAGS) $(LDFLAGS) main.o auth_aix.o auth_bsd.o \
+		auth_hpux.o auth_mdw.o auth_openbsd.o auth_pam.o auth_sun.o \
+		fail_log.o lastlog.o nologin.o snooze.o $(LIB)
 
 checkfaillog: checkfaillog.o fail_check.o
-	$(CC) -o checkfaillog $(CFLAGS) checkfaillog.o fail_check.o $(LIB)
+	$(CC) -o checkfaillog $(CFLAGS) $(LDFLAGS) checkfaillog.o \
+		fail_check.o $(LIB)
 
 main.o: main.c config.h pwauth.h fail_log.h
 auth_aix.o: auth_aix.c config.h pwauth.h
