@@ -84,7 +84,7 @@ int check_auth(char *login, char *passwd)
 #else
     cpass= crypt(passwd, spwd->sp_pwdp);
 #endif
-    if (strcmp(cpass, spwd->sp_pwdp)) return STATUS_INVALID;
+    if (!cpass || strcmp(cpass, spwd->sp_pwdp)) return STATUS_INVALID;
 #ifdef CHECK_LOGIN_EXPIRATION
     if (spwd->sp_expire >= 0 && spwd->sp_expire < today)
 	return STATUS_EXPIRED;
