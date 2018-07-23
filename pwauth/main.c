@@ -44,6 +44,7 @@ int server_uids[]= {SERVER_UIDS, 0};
 #endif
 
 
+int
 main(int argc, char **argv)
 {
 #ifdef ENV_METHOD

@@ -127,3 +127,7 @@ extern int haveuid;
 #ifndef BFSZ
 # define BFSZ 1024
 #endif
+
+void snooze(int seconds);
+void lastlog(void);
+int check_auth(char *login, char *passwd);

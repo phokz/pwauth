@@ -31,6 +31,8 @@
  * =======================================================================
  */
 
+#include <time.h>
+
 #include "pwauth.h"
 
 /* LASTLOG - update the system's lastlog */
