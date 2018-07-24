@@ -1,0 +1,31 @@
+language: c
+git:
+  quiet: true
+
+addons:
+  apt:
+    packages:
+      - libpam0g-dev
+
+compiler:
+  - gcc
+  - clang
+
+before_script:
+  - sed -r -i -e 's/^# \(LIB=.*\)$/\1/' pwauth/Makefile
+    sed -r -i -e 's/^#define SHADOW_SUN\>/\/* &/' \
+            -e 's/^\/* \(#define PAM\>\)/\1/' \
+            -e 's/^#define NOLOGIN_FILE\>/\/* &/' \
+            -e 's/^#define MIN_LOGIN_UID\>/\/* &/' \
+            -e 's/^#define SERVER_UIDS\>/\/* &/' \
+        pwauth/config.h
+
+script:
+  - make -j1 CFLAGS="-Wall -Wformat-all -Wno-comment"
+
+branches:
+   only:
+     - master
+
+install: true
+
