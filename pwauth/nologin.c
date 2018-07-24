@@ -38,7 +38,7 @@
  * uid is below MIN_NOLOGIN_UID.
  */
 
-check_nologin()
+int check_nologin(void)
 {
     /* Return true if the file does not exist (the access() function returns
      * true if the file doesn't exist - pretty dumb, eh?) */

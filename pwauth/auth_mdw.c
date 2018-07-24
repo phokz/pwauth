@@ -38,8 +38,8 @@
 #include <pwd.h>
 #endif
 #include <shadow.h>	  /* is -I/usr/local/include on gcc command? */
-char *kg_pwhash(char *clear, char *user, char *result, int resultlen);
-char *pw_encrypt();
+char *kg_pwhash(const char *clear, const char *user, char *result, int resultlen);
+char *pw_encrypt(const char *clear, const char *salt);
 #endif /* SHADOW_MDW */
 
 #ifdef SHADOW_MDW
@@ -50,7 +50,7 @@ char *pw_encrypt();
  * (This version for systems with kg_pwhash() call.)
  */
 
-int check_auth(char *login, char *passwd)
+int check_auth(const char *login, const char *passwd)
 {
     char *cpass;
     char bf[40];

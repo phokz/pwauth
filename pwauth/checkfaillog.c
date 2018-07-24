@@ -44,7 +44,8 @@ int main(int argc, char **argv)
 {
     int i, j;
     int reset= 0, verbose= 1;
-    char *user= NULL, *msg= NULL;
+    char *user= NULL;
+    const char *msg= NULL;
     uid_t uid= getuid();
 
     /* Parse command line */

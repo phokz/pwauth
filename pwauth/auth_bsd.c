@@ -49,7 +49,7 @@
  * (This version for systems with only a getpwnam() call.)
  */
 
-int check_auth(char *login, char *passwd)
+int check_auth(const char *login, const char *passwd)
 {
     char *cpass;
     struct passwd *pwd= getpwnam(login);

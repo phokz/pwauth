@@ -44,8 +44,7 @@ int server_uids[]= {SERVER_UIDS, 0};
 #endif
 
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 #ifdef ENV_METHOD
     char *login, *passwd;
@@ -55,8 +54,8 @@ main(int argc, char **argv)
 #endif
 #ifdef SERVER_UIDS
     int uid;
-#endif
     int i;
+#endif
     int status;
     struct rlimit rlim;
 

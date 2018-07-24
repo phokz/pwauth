@@ -42,8 +42,7 @@
  * sleep time, if other pwauth processes are in sleeps.
  */
 
-void
-snooze(int seconds)
+void snooze(int seconds)
 {
     int slfd;
     struct flock lock;

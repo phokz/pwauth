@@ -47,7 +47,7 @@
  * uses this anymore, so I'm not going to bother implementing that.
  */
 
-int check_fails()
+int check_fails(void)
 {
     int result= 1;
     struct faillog flog;
@@ -70,7 +70,7 @@ int check_fails()
 /* LOG_FAILURE - Do whatever we need to do to log a failed login attempt.
  */
 
-void log_failure()
+void log_failure(void)
 {
     int flfd;
     struct faillog flog;
@@ -112,7 +112,7 @@ void log_failure()
  * been exceeded, then the count is reset to zero.
  */
 
-int check_fails()
+int check_fails(void)
 {
     int result= 1;
 #if defined(MAX_FAIL_COUNT) || defined(RESET_FAIL_COUNT)
@@ -149,7 +149,7 @@ int check_fails()
 /* LOG_FAILURE - Do whatever we need to do to log a failed login attempt.
  */
 
-log_failure()
+int log_failure(void)
 {
     int flfd;
     struct badlogin flog;
