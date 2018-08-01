@@ -47,7 +47,7 @@
  * status code. (This version for systems with a getuserpw() call.)
  */
 
-int check_auth(char *login, char *passwd)
+int check_auth(const char *login, const char *passwd)
 {
     char *cpass;
     struct userpw *upwd= getuserpw(login);
@@ -85,7 +85,7 @@ int check_auth(char *login, char *passwd)
  * interface and return a status code.
  */
 
-int check_auth(char *login, char *passwd)
+int check_auth(const char *login, const char *passwd)
 {
     char *cpass;
     char *message;

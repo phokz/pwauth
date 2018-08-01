@@ -45,7 +45,7 @@
  * (This version for systems with auth_usercheck() call.)
  */
 
-int check_auth(char *login, char *passwd)
+int check_auth(const char *login, const char *passwd)
 {
     auth_session_t *as;
     login_cap_t *lc;

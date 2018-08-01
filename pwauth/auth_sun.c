@@ -38,8 +38,8 @@
 #include <pwd.h>
 #endif
 #include <shadow.h>
-struct spwd *getspnam();
-char *crypt();
+struct spwd *getspnam(const char *name);
+char *crypt(const char *key, const char *salt);
 #endif /* SHADOW_SUN */
 
 #ifdef SHADOW_JFH
@@ -47,8 +47,8 @@ char *crypt();
 #include <pwd.h>
 #endif
 #include <shadow.h>	  /* this may be hidden in /usr/local/include */
-struct spwd *getspnam();
-char *pw_encrypt();
+struct spwd *getspnam(const char *name);
+char *pw_encrypt(const char *clear, const char *salt);
 #endif /* SHADOW_JFH */
 
 #if defined(SHADOW_JFH) || defined(SHADOW_SUN)
@@ -59,7 +59,7 @@ char *pw_encrypt();
  * (This version for systems with getspnam() call.)
  */
 
-int check_auth(char *login, char *passwd)
+int check_auth(const char *login, const char *passwd)
 {
     char *cpass;
     struct spwd *spwd= getspnam(login);

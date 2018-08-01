@@ -56,8 +56,8 @@
 /* Application data structure passed to PAM_conv: */
 
 struct ad_user {
-	char *login;
-	char *passwd;
+	const char *login;
+	const char *passwd;
 	};
 
 /* The pam_unix.so library in Solaris 2.6 fails to pass along appdata_ptr
@@ -150,7 +150,7 @@ int PAM_conv (int num_msg, const struct pam_message **msg,
  * (This version for systems using PAM.)
  */
 
-int check_auth(char *login, char *passwd)
+int check_auth(const char *login, const char *passwd)
 {
 #ifndef PAM_SOLARIS_26
     struct ad_user user_info= {login, passwd};

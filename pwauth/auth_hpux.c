@@ -45,7 +45,7 @@
  * (This version for systems with a getprpwnam() call.)
  */
 
-int check_auth(char *login, char *passwd)
+int check_auth(const char *login, const char *passwd)
 {
     char *cpass;
     struct pr_passwd *pwd= getprpwnam(login);

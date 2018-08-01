@@ -31,14 +31,14 @@
  * =======================================================================
  */
 
-#include <time.h>
+#include <unistd.h>
 
 #include "pwauth.h"
 
 /* LASTLOG - update the system's lastlog */
 
 #ifdef UNIX_LASTLOG
-void lastlog()
+void lastlog(void)
 {
     struct lastlog ll;
     int fd;
@@ -57,7 +57,7 @@ void lastlog()
 
     if ((fd= open(LASTLOG,O_WRONLY)) < 0) return;
 
-    lseek(fd, (long)(hisuid * sizeof(struct lastlog)), 0);
+    lseek(fd, (long)(hisuid * sizeof(struct lastlog)), SEEK_SET);
     write(fd, &ll, sizeof(struct lastlog));
     close(fd);
 }

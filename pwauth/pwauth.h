@@ -37,6 +37,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/time.h>
@@ -130,4 +131,5 @@ extern int haveuid;
 
 void snooze(int seconds);
 void lastlog(void);
-int check_auth(char *login, char *passwd);
+int check_auth(const char *login, const char *passwd);
+int check_nologin(void);
