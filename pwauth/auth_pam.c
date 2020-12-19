@@ -158,6 +158,7 @@ int check_auth(char *login, char *passwd)
     struct pam_conv conv= { PAM_conv, (void *)&user_info };
     pam_handle_t *pamh= NULL;
     int retval;
+    char *rhost;
 
 #ifdef NEED_UID
     struct passwd *pwd;
@@ -175,7 +176,22 @@ int check_auth(char *login, char *passwd)
     user_info.passwd= passwd;
 #endif /* PAM_SOLARIS_26 */
 
+    /*
+     * mod_authnz_external provides remote host information in optional
+     * environment variables:
+     *   IP: the IPv4 or IPv6 address
+     *   HOST: the reverse resolution of the address
+     * If present, we use one these to set the PAM_RHOST item,
+     * preferring IP address over HOST.
+     */
+    rhost= getenv("IP");
+    if (rhost == NULL)
+	rhost= getenv("HOST");
+
     retval= pam_start("pwauth", login, &conv, &pamh);
+
+    if (retval == PAM_SUCCESS && rhost != NULL)
+	retval= pam_set_item(pamh, PAM_RHOST, rhost);
 
     if (retval == PAM_SUCCESS)
 	retval= pam_authenticate(pamh, PAM_SILENT);
